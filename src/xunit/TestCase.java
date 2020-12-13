@@ -18,9 +18,15 @@ public class TestCase {
         }catch(Exception e){
             throw new RuntimeException(e);
         }
+
+        tearDown();
     }
 
     protected void setUp(){
+
+    }
+
+    protected void tearDown(){
 
     }
 }

@@ -14,4 +14,8 @@ public class WasRun extends TestCase{
     public void setUp(){
         log = "setUp";
     }
+
+    public void tearDown(){
+        log += " tearDown";
+    }
 }
