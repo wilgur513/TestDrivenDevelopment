@@ -7,9 +7,9 @@ public class TestCaseTest extends TestCase{
 
     public void testRunning(){
         WasRun wasRun = new WasRun("testMethod");
-        System.out.println(wasRun.wasRun); // false;
+        Assert.assertEquals(wasRun.wasRun, false);
         wasRun.run();
-        System.out.println(wasRun.wasRun); // true;
+        Assert.assertEquals(wasRun.wasRun, true);
     }
 
     public void testAssertEqualsEquivalentValues(){
@@ -20,10 +20,7 @@ public class TestCaseTest extends TestCase{
         try {
             Assert.assertEquals(true, false);
         }catch(Exception e){
-            System.out.println(e.getMessage());
-            return;
+            Assert.assertEquals(e.getMessage(), "fail! actual : true, expected : false");
         }
-
-        System.out.println("test failed");
     }
 }
