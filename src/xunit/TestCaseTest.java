@@ -11,4 +11,8 @@ public class TestCaseTest extends TestCase{
         wasRun.run();
         System.out.println(wasRun.wasRun); // true;
     }
+
+    public void testAssertEqualsTrueCase(){
+        Assert.assertEquals(true, true);
+    }
 }
