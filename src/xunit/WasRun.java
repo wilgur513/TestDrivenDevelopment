@@ -1,10 +1,13 @@
 package xunit;
 
+import java.lang.reflect.Method;
+
 public class WasRun {
+    private String name;
     boolean wasRun;
 
     public WasRun(String name){
-
+        this.name = name;
     }
 
     public void testMethod(){
@@ -12,6 +15,11 @@ public class WasRun {
     }
 
     public void run(){
-        testMethod();
+        try{
+            Method method = getClass().getMethod(name);
+            method.invoke(this);
+        }catch(Exception e){
+            throw new RuntimeException(e);
+        }
     }
 }
