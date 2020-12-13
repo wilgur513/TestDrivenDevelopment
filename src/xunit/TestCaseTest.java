@@ -56,4 +56,20 @@ public class TestCaseTest extends TestCase{
         TestResult result = suite.run();
         Assert.assertEquals(result.summary(), "2 run, 1 failed");
     }
+
+    public void testSuiteAddSuite(){
+        TestSuite suite1 = new TestSuite();
+        suite1.add(new WasRun("testMethod"));
+        suite1.add(new WasRun("testBrokenMethod"));
+
+        TestSuite suite2 = new TestSuite();
+        suite2.add(suite1);
+        suite2.add(new WasRun("testMethod"));
+        suite2.add(new WasRun("testMethod"));
+        suite2.add(new WasRun("testBrokenMethod"));
+
+        TestResult result = new TestResult();
+        suite2.run(result);
+        Assert.assertEquals(result.summary(), "5 run, 2 failed");
+    }
 }

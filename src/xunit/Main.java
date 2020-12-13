@@ -10,6 +10,7 @@ public class Main {
         suite.add(new TestCaseTest("testResultFormatting"));
         suite.add(new TestCaseTest("testBrokenMethod"));
         suite.add(new TestCaseTest("testSuite"));
+        suite.add(new TestCaseTest("testSuiteAddSuite"));
         TestResult result = suite.run();
         System.out.println(result.summary());
     }
