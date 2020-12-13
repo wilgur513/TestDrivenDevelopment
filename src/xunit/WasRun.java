@@ -12,6 +12,6 @@ public class WasRun {
     }
 
     public void run(){
-
+        testMethod();
     }
 }
