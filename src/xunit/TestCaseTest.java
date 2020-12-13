@@ -22,4 +22,10 @@ public class TestCaseTest extends TestCase{
             Assert.assertEquals(e.getMessage(), "fail! actual : true, expected : false");
         }
     }
+
+    public void testResult(){
+        WasRun wasRun = new WasRun("testMethod");
+        TestResult result = wasRun.run();
+        Assert.assertEquals(result.summary(), "1 run, 0 failed");
+    }
 }
