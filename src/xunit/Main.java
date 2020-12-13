@@ -8,6 +8,7 @@ public class Main {
         System.out.println(new TestCaseTest("testResult").run().summary());
         System.out.println(new TestCaseTest("testResultFormatting").run().summary());
         System.out.println(new TestCaseTest("testBrokenMethod").run().summary());
+        System.out.println(new TestCaseTest("testSuite").run().summary());
 
     }
 }
