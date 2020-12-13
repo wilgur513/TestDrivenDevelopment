@@ -2,10 +2,10 @@ package xunit;
 
 public class Main {
     public static void main(String[] args) {
-        new TestCaseTest("testTemplateMethod").run();
-        new TestCaseTest("testAssertEqualsEquivalentValues").run();
-        new TestCaseTest("testAssertEqualsNotEquivalentValues").run();
-        new TestCaseTest("testResult").run();
-        new TestCaseTest("testResultFormatting").run();
+        System.out.println(new TestCaseTest("testTemplateMethod").run().summary());
+        System.out.println(new TestCaseTest("testAssertEqualsEquivalentValues").run().summary());
+        System.out.println(new TestCaseTest("testAssertEqualsNotEquivalentValues").run().summary());
+        System.out.println(new TestCaseTest("testResult").run().summary());
+        System.out.println(new TestCaseTest("testResultFormatting").run().summary());
     }
 }
