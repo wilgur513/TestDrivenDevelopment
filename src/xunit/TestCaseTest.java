@@ -27,6 +27,6 @@ public class TestCaseTest extends TestCase{
     public void testSetUp(){
         WasRun wasRun = new WasRun("testMethod");
         wasRun.run();
-        Assert.assertEquals(wasRun.wasSetUp, true);
+        Assert.assertEquals(wasRun.log, "setUp");
     }
 }
