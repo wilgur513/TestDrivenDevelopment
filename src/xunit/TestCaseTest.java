@@ -8,7 +8,7 @@ public class TestCaseTest extends TestCase{
     public void testTemplateMethod(){
         WasRun wasRun = new WasRun("testMethod");
         wasRun.run();
-        Assert.assertEquals(wasRun.log, "setUp testMethod");
+        Assert.assertEquals(wasRun.log, "setUp testMethod tearDown");
     }
 
     public void testAssertEqualsEquivalentValues(){
