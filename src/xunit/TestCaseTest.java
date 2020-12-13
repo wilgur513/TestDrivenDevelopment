@@ -5,16 +5,10 @@ public class TestCaseTest extends TestCase{
         super(name);
     }
 
-    public void testRunning(){
+    public void testTemplateMethod(){
         WasRun wasRun = new WasRun("testMethod");
         wasRun.run();
         Assert.assertEquals(wasRun.log, "setUp testMethod");
-    }
-
-    public void testSetUp(){
-        WasRun wasRun = new WasRun("testMethod");
-        wasRun.run();
-        Assert.assertEquals(wasRun.log, "setUp");
     }
 
     public void testAssertEqualsEquivalentValues(){
