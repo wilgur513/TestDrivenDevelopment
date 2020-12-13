@@ -12,7 +12,18 @@ public class TestCaseTest extends TestCase{
         System.out.println(wasRun.wasRun); // true;
     }
 
-    public void testAssertEqualsTrueCase(){
+    public void testAssertEqualsEquivalentValues(){
         Assert.assertEquals(true, true);
+    }
+
+    public void testAssertEqualsNotEquivalentValues(){
+        try {
+            Assert.assertEquals(true, false);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return;
+        }
+
+        System.out.println("test failed");
     }
 }
