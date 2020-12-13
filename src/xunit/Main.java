@@ -2,13 +2,14 @@ package xunit;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(new TestCaseTest("testTemplateMethod").run().summary());
-        System.out.println(new TestCaseTest("testAssertEqualsEquivalentValues").run().summary());
-        System.out.println(new TestCaseTest("testAssertEqualsNotEquivalentValues").run().summary());
-        System.out.println(new TestCaseTest("testResult").run().summary());
-        System.out.println(new TestCaseTest("testResultFormatting").run().summary());
-        System.out.println(new TestCaseTest("testBrokenMethod").run().summary());
-        System.out.println(new TestCaseTest("testSuite").run().summary());
-
+        TestResult result = new TestResult();
+        new TestCaseTest("testTemplateMethod").run(result);
+        new TestCaseTest("testAssertEqualsEquivalentValues").run(result);
+        new TestCaseTest("testAssertEqualsNotEquivalentValues").run(result);
+        new TestCaseTest("testResult").run(result);
+        new TestCaseTest("testResultFormatting").run(result);
+        new TestCaseTest("testBrokenMethod").run(result);
+        new TestCaseTest("testSuite").run(result);
+        System.out.println(result.summary());
     }
 }

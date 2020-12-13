@@ -5,9 +5,15 @@ public class TestCaseTest extends TestCase{
         super(name);
     }
 
+    TestResult result;
+
+    public void setUp(){
+        result = new TestResult();
+    }
+
     public void testTemplateMethod(){
         WasRun wasRun = new WasRun("testMethod");
-        wasRun.run();
+        wasRun.run(result);
         Assert.assertEquals(wasRun.log, "setUp testMethod tearDown");
     }
 
@@ -25,13 +31,13 @@ public class TestCaseTest extends TestCase{
 
     public void testResult(){
         WasRun wasRun = new WasRun("testMethod");
-        TestResult result = wasRun.run();
+        wasRun.run(result);
         Assert.assertEquals(result.summary(), "1 run, 0 failed");
     }
 
     public void testBrokenMethod(){
         WasRun wasRun = new WasRun("testBrokenMethod");
-        TestResult result = wasRun.run();
+        wasRun.run(result);
         Assert.assertEquals(result.summary(), "1 run, 1 failed");
     }
 
