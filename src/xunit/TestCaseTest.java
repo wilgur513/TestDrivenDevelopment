@@ -11,6 +11,12 @@ public class TestCaseTest extends TestCase{
         Assert.assertEquals(wasRun.log, "setUp testMethod");
     }
 
+    public void testSetUp(){
+        WasRun wasRun = new WasRun("testMethod");
+        wasRun.run();
+        Assert.assertEquals(wasRun.log, "setUp");
+    }
+
     public void testAssertEqualsEquivalentValues(){
         Assert.assertEquals(true, true);
     }
@@ -21,11 +27,5 @@ public class TestCaseTest extends TestCase{
         }catch(Exception e){
             Assert.assertEquals(e.getMessage(), "fail! actual : true, expected : false");
         }
-    }
-
-    public void testSetUp(){
-        WasRun wasRun = new WasRun("testMethod");
-        wasRun.run();
-        Assert.assertEquals(wasRun.log, "setUp");
     }
 }
