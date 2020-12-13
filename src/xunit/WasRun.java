@@ -2,24 +2,15 @@ package xunit;
 
 import java.lang.reflect.Method;
 
-public class WasRun {
-    private String name;
+public class WasRun extends TestCase{
     boolean wasRun;
 
     public WasRun(String name){
-        this.name = name;
+        super(name);
     }
 
     public void testMethod(){
         wasRun = true;
     }
 
-    public void run(){
-        try{
-            Method method = getClass().getMethod(name);
-            method.invoke(this);
-        }catch(Exception e){
-            throw new RuntimeException(e);
-        }
-    }
 }
