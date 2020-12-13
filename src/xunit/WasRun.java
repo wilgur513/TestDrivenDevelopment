@@ -1,6 +1,7 @@
 package xunit;
 
 public class WasRun extends TestCase{
+    boolean wasSetUp;
     boolean wasRun;
 
     public WasRun(String name){
@@ -9,5 +10,9 @@ public class WasRun extends TestCase{
 
     public void testMethod(){
         wasRun = true;
+    }
+
+    public void setUp(){
+        wasSetUp = true;
     }
 }
