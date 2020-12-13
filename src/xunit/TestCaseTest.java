@@ -53,7 +53,7 @@ public class TestCaseTest extends TestCase{
         TestSuite suite = new TestSuite();
         suite.add(new WasRun("testMethod"));
         suite.add(new WasRun("testBrokenMethod"));
-        TestResult result = suite.run();
+        suite.run(result);
         Assert.assertEquals(result.summary(), "2 run, 1 failed");
     }
 

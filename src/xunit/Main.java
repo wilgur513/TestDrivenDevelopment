@@ -11,7 +11,8 @@ public class Main {
         suite.add(new TestCaseTest("testBrokenMethod"));
         suite.add(new TestCaseTest("testSuite"));
         suite.add(new TestCaseTest("testSuiteAddSuite"));
-        TestResult result = suite.run();
+        TestResult result = new TestResult();
+        suite.run(result);
         System.out.println(result.summary());
     }
 }
