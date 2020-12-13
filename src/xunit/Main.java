@@ -5,5 +5,6 @@ public class Main {
         new TestCaseTest("testRunning").run();
         new TestCaseTest("testAssertEqualsEquivalentValues").run();
         new TestCaseTest("testAssertEqualsNotEquivalentValues").run();
+        new TestCaseTest("testSetUp").run();
     }
 }

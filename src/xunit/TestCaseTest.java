@@ -23,4 +23,10 @@ public class TestCaseTest extends TestCase{
             Assert.assertEquals(e.getMessage(), "fail! actual : true, expected : false");
         }
     }
+
+    public void testSetUp(){
+        WasRun wasRun = new WasRun("testMethod");
+        wasRun.run();
+        Assert.assertEquals(wasRun.wasSetUp, true);
+    }
 }
