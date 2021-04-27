@@ -1,5 +1,6 @@
 package bank;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -11,7 +12,12 @@ import static org.mockito.Mockito.verify;
 public class AccountShould {
     @Mock
     TransactionRepository transactionRepository;
-    private Account account = new Account();
+    private Account account;
+
+    @Before
+    public void setUp() throws Exception {
+        account = new Account(transactionRepository);
+    }
 
     @Test
     public void store_a_deposit_transaction() {
