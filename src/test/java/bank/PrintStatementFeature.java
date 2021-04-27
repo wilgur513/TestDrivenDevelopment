@@ -18,7 +18,7 @@ public class PrintStatementFeature {
 
     @Before
     public void setUp() throws Exception {
-        account = new Account(new TransactionRepository(clock), new StatementPrinter());
+        account = new Account(new TransactionRepository(clock), new StatementPrinter(console));
     }
 
     @Test
