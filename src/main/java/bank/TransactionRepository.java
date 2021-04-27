@@ -1,5 +1,7 @@
 package bank;
 
+import java.util.List;
+
 public class TransactionRepository {
     public void addDeposit(int amount) {
 
@@ -7,5 +9,9 @@ public class TransactionRepository {
 
     public void addWithdrawal(int amount) {
 
+    }
+
+    public List<Transaction> allTransactions() {
+        return null;
     }
 }
