@@ -46,7 +46,7 @@ public class StatementPrinterShould {
     }
 
     private Transaction withdrawal(String date, int amount) {
-        return new Transaction(date, amount);
+        return new Transaction(date, -amount);
     }
 
     private Transaction deposit(String date, int amount) {
