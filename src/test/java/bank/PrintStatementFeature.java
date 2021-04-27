@@ -13,11 +13,12 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class PrintStatementFeature {
     @Mock Console console;
+    @Mock Clock clock;
     private Account account;
 
     @Before
     public void setUp() throws Exception {
-        account = new Account(new TransactionRepository(), new StatementPrinter());
+        account = new Account(new TransactionRepository(clock), new StatementPrinter());
     }
 
     @Test
