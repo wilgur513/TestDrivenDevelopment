@@ -1,5 +1,6 @@
 package bank;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InOrder;
@@ -15,20 +16,24 @@ import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class StatementPrinterShould {
+    private StatementPrinter statementPrinter;
     private static final List<Transaction> NO_TRANSACTIONS = Collections.EMPTY_LIST;
     @Mock
     Console console;
 
+    @Before
+    public void setUp() throws Exception {
+        statementPrinter = new StatementPrinter(console);
+    }
+
     @Test
     public void always_print_the_header() {
-        StatementPrinter statementPrinter = new StatementPrinter(console);
         statementPrinter.print(NO_TRANSACTIONS);
         verify(console).printLine("DATE | AMOUNT | BALANCE");
     }
 
     @Test
     public void print_transactions_in_reverse_chronological_order() {
-        StatementPrinter statementPrinter = new StatementPrinter(console);
         statementPrinter.print(transactionContaining(
                                     deposit("01/04/2014", 1000),
                                     withdrawal("02/04/2014", 100),
