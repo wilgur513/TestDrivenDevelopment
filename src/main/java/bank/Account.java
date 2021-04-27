@@ -12,7 +12,7 @@ public class Account {
     }
 
     public void withdraw(int amount) {
-
+        transactionRepository.addWithdrawal(amount);
     }
 
     public void printStatement() {
