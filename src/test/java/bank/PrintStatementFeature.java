@@ -27,7 +27,7 @@ public class PrintStatementFeature {
         account.deposit(500);
 
         account.printStatement();
-        
+
         InOrder inOrder = Mockito.inOrder(console);
         inOrder.verify(console).printLine("DATE | AMOUNT | BALANCE");
         inOrder.verify(console).printLine("10/04/2014 | 500.00 | 1400.00");
