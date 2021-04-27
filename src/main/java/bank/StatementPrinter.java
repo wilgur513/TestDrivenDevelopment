@@ -3,6 +3,7 @@ package bank;
 import java.util.List;
 
 public class StatementPrinter {
+    public static final String STATEMENT_HEADER = "DATE | AMOUNT | BALANCE";
     private final Console console;
 
     public StatementPrinter(Console console) {
@@ -10,6 +11,6 @@ public class StatementPrinter {
     }
 
     public void print(List<Transaction> transactions) {
-        console.printLine("DATE | AMOUNT | BALANCE");
+        console.printLine(STATEMENT_HEADER);
     }
 }
