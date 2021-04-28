@@ -1,8 +1,8 @@
-# TDD 연습
+# Test Driven Development 연습 과제
 
 ## 목차
 - [xUnit 예제](#xUnit-예제)
-- [알고리즘 문제(BOJ 2800 괄호 제거)](#알고리즘-문(boj-2800-괄호제거))
+- [알고리즘 문제(BOJ 2800 괄호 제거)](#알고리즘-문제(boj-2800-괄호-제거))
 - [Bank kata](#bank-kata)
 
 ## xUnit 예제
@@ -22,3 +22,10 @@ Test Driven Development By Example에서 소개한 xUnit 예제와 Toby님 유�
   - [테스트 코드](./src/test/java/remove/parenthesis)
   
 ## Bank Kata
+Outside-in TDD를 활용한 은행 예제 풀이
+<br>
+- 참고 링크
+  - [Codurance Outside-in TDD](https://www.youtube.com/watch?v=XHnuMjah6ps)
+  - [백명석님의 Outside-in TDD 소개 영상](https://www.youtube.com/watch?v=EFB-h5jMFDk)
+  - [프로덕션 코드](./src/main/java/bank)
+  - [테스트 코드](./src/test/java/bank)
