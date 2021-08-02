@@ -11,4 +11,10 @@ public class HighlightTest {
         assertThat(highlighter.highlight("abc")).isEqualTo("abc");
         assertThat(highlighter.highlight("asdf")).isEqualTo("asdf");
     }
+
+    @Test
+    public void onlyNoteString() {
+        Highlighter highlighter = new Highlighter();
+        assertThat(highlighter.highlight("note")).isEqualTo("{note}");
+    }
 }
