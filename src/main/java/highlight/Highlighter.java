@@ -6,17 +6,21 @@ public class Highlighter {
     private static final String POST_MARKER = "}";
 
     public String highlight(String str) {
-        if(noteIndex(str) < 0) {
+        if(hasNote(str)) {
             return str;
         }
 
-        String result = str.substring(0, noteIndex(str)) + markedNote();
-        
+        String result = str.substring(0, noteIndex(str));
+        result += markedNote();
+
         if(noteIndex(str) + TARGET.length() > str.length()) {
             return result;
         }
-
         return result + str.substring(noteIndex(str) + TARGET.length());
+    }
+
+    private boolean hasNote(String str) {
+        return noteIndex(str) < 0;
     }
 
     private int noteIndex(String str) {
@@ -26,6 +30,4 @@ public class Highlighter {
     private String markedNote() {
         return PRE_MARKER + TARGET + POST_MARKER;
     }
-
-
 }
