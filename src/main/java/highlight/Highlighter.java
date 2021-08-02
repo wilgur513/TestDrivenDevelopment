@@ -2,18 +2,22 @@ package highlight;
 
 public class Highlighter {
     public String highlight(String str) {
-        int index = str.indexOf("note");
-
-        if(index < 0) {
+        if(noteIndex(str) < 0) {
             return str;
         }
 
-        String result = str.substring(0, index) + "{note}";
+        String result = str.substring(0, noteIndex(str)) + "{note}";
 
-        if(index + "note".length() > str.length()) {
+        if(noteIndex(str) + "note".length() > str.length()) {
             return result;
         }
 
-        return result + str.substring(index + "note".length());
+        return result + str.substring(noteIndex(str) + "note".length());
     }
+
+    private int noteIndex(String str) {
+        return str.indexOf("note");
+    }
+
+
 }
