@@ -1,19 +1,18 @@
 package highlight;
 
 public class Highlighter {
-    private static final String TARGET = "note";
-    private static final String PRE_MARKER = "{";
-    private static final String POST_MARKER = "}";
+    private static final String NOTE = "note";
+    private static final String PRE_HIGHLIGHT = "{";
+    private static final String POST_HIGHLIGHT = "}";
 
     public String highlight(String str) {
-        if(hasNote(str)) {
+        if(notHasNote(str)) {
             return str;
         }
-        
-        return preNoteString(str) + markedNote() + postNoteString(str);
+        return preNoteString(str) + highlightedNote() + postNoteString(str);
     }
 
-    private boolean hasNote(String str) {
+    private boolean notHasNote(String str) {
         return noteIndex(str) < 0;
     }
 
@@ -22,17 +21,17 @@ public class Highlighter {
     }
 
     private String postNoteString(String str) {
-        if(noteIndex(str) + TARGET.length() > str.length()) {
+        if(noteIndex(str) + NOTE.length() > str.length()) {
             return "";
         }
-        return str.substring(noteIndex(str) + TARGET.length());
+        return str.substring(noteIndex(str) + NOTE.length());
     }
 
     private int noteIndex(String str) {
-        return str.indexOf(TARGET);
+        return str.indexOf(NOTE);
     }
 
-    private String markedNote() {
-        return PRE_MARKER + TARGET + POST_MARKER;
+    private String highlightedNote() {
+        return PRE_HIGHLIGHT + NOTE + POST_HIGHLIGHT;
     }
 }
