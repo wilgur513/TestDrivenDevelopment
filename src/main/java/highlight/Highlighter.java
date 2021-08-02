@@ -1,6 +1,8 @@
 package highlight;
 
 public class Highlighter {
+    private static final String TARGET = "note";
+
     public String highlight(String str) {
         if(noteIndex(str) < 0) {
             return str;
@@ -8,15 +10,15 @@ public class Highlighter {
 
         String result = str.substring(0, noteIndex(str)) + "{note}";
 
-        if(noteIndex(str) + "note".length() > str.length()) {
+        if(noteIndex(str) + TARGET.length() > str.length()) {
             return result;
         }
 
-        return result + str.substring(noteIndex(str) + "note".length());
+        return result + str.substring(noteIndex(str) + TARGET.length());
     }
 
     private int noteIndex(String str) {
-        return str.indexOf("note");
+        return str.indexOf(TARGET);
     }
 
 
