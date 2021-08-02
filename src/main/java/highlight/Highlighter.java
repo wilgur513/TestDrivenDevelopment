@@ -10,7 +10,7 @@ public class Highlighter {
             return str;
         }
 
-        String result = str.substring(0, noteIndex(str));
+        String result = preNoteString(str);
         result += markedNote();
 
         if(noteIndex(str) + TARGET.length() > str.length()) {
@@ -21,6 +21,10 @@ public class Highlighter {
 
     private boolean hasNote(String str) {
         return noteIndex(str) < 0;
+    }
+
+    private String preNoteString(String str) {
+        return str.substring(0, noteIndex(str));
     }
 
     private int noteIndex(String str) {
