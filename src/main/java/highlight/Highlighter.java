@@ -9,14 +9,8 @@ public class Highlighter {
         if(hasNote(str)) {
             return str;
         }
-
-        String result = preNoteString(str);
-        result += markedNote();
-
-        if(noteIndex(str) + TARGET.length() > str.length()) {
-            return result;
-        }
-        return result + str.substring(noteIndex(str) + TARGET.length());
+        
+        return preNoteString(str) + markedNote() + postNoteString(str);
     }
 
     private boolean hasNote(String str) {
@@ -25,6 +19,13 @@ public class Highlighter {
 
     private String preNoteString(String str) {
         return str.substring(0, noteIndex(str));
+    }
+
+    private String postNoteString(String str) {
+        if(noteIndex(str) + TARGET.length() > str.length()) {
+            return "";
+        }
+        return str.substring(noteIndex(str) + TARGET.length());
     }
 
     private int noteIndex(String str) {
