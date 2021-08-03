@@ -25,15 +25,15 @@ public class HighlightSplitter {
     }
 
     public String postTargetString() {
-        if(hasPostTargetString()) {
-            return "";
+        if(findPostTargetString().contains(target)) {
+            throw new CurrentIsNotLastTargetException(String.format("postTargetString[%s] has next target[%s]", findPostTargetString(), target));
         }
 
-        if(str.substring(postTargetIndex()).contains(target)) {
-            throw new CurrentIsNotLastTargetException(String.format("%s is post target string and has target[%s]", str.substring(postTargetIndex()), target));
-        }
+        return findPostTargetString();
+    }
 
-        return str.substring(postTargetIndex());
+    private String findPostTargetString() {
+        return hasPostTargetString() ? str.substring(postTargetIndex()) : "";
     }
 
     private boolean hasPostTargetString() {
