@@ -5,9 +5,11 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class HighlightSplitterTest {
+    private static final String TARGET = "note";
+
     @Test
     public void splitHasOnlyOneNote() {
-        HighlightSplitter splitter = HighlightSplitter.splitter("note", "note");
+        HighlightSplitter splitter = HighlightSplitter.splitter("note", TARGET);
 
         assertThat(splitter.hasNext()).isTrue();
         assertThat(splitter.prevTargetString()).isEqualTo("");
@@ -19,7 +21,7 @@ public class HighlightSplitterTest {
 
     @Test(expected = CurrentIsNotLastTargetException.class)
     public void throwCurrentIsNotLastTargetException() {
-         HighlightSplitter splitter = HighlightSplitter.splitter("note note", "note");
+         HighlightSplitter splitter = HighlightSplitter.splitter("note note", TARGET);
          splitter.postTargetString();
     }
 }
