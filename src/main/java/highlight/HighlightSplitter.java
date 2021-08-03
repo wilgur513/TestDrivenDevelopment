@@ -29,6 +29,10 @@ public class HighlightSplitter {
             return "";
         }
 
+        if(str.substring(index + target.length()).contains(target)) {
+            throw new CurrentIsNotLastTargetException(String.format("%s is post target string and has target[%s]", str.substring(index + target.length()), target));
+        }
+
         return str.substring(index + target.length());
     }
 
