@@ -16,4 +16,10 @@ public class HighlightSplitterTest {
         assertThat(splitter.hasNext()).isFalse();
         assertThat(splitter.postTargetString()).isEqualTo("");
     }
+
+    @Test(expected = CurrentIsNotLastTargetException.class)
+    public void throwCurrentIsNotLastTargetException() {
+         HighlightSplitter splitter = HighlightSplitter.splitter("note note", "note");
+         splitter.postTargetString();
+    }
 }
