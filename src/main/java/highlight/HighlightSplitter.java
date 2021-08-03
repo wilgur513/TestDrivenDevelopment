@@ -33,11 +33,11 @@ public class HighlightSplitter {
     }
 
     private String findPostTargetString() {
-        return hasPostTargetString() ? str.substring(postTargetIndex()) : "";
+        return notHasPostTargetString() ? "" : str;
     }
 
-    private boolean hasPostTargetString() {
-        return postTargetIndex() <= str.length();
+    private boolean notHasPostTargetString() {
+        return postTargetIndex() > str.length();
     }
 
     private int postTargetIndex() {
