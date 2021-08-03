@@ -12,7 +12,7 @@ public class HighlightSplitter {
     }
 
     public void next() {
-        str = str.substring(index + target.length());
+        str = str.substring(postTargetIndex());
         index = str.indexOf(target);
     }
 
@@ -25,15 +25,19 @@ public class HighlightSplitter {
     }
 
     public String postTargetString() {
-        if(index + target.length() > str.length()) {
+        if(postTargetIndex() > str.length()) {
             return "";
         }
 
-        if(str.substring(index + target.length()).contains(target)) {
-            throw new CurrentIsNotLastTargetException(String.format("%s is post target string and has target[%s]", str.substring(index + target.length()), target));
+        if(str.substring(postTargetIndex()).contains(target)) {
+            throw new CurrentIsNotLastTargetException(String.format("%s is post target string and has target[%s]", str.substring(postTargetIndex()), target));
         }
 
-        return str.substring(index + target.length());
+        return str.substring(postTargetIndex());
+    }
+
+    private int postTargetIndex() {
+        return index + target.length();
     }
 
     public static HighlightSplitter splitter(String str, String target) {
