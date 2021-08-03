@@ -25,7 +25,7 @@ public class HighlightSplitter {
     }
 
     public String postTargetString() {
-        if(postTargetIndex() > str.length()) {
+        if(hasPostTargetString()) {
             return "";
         }
 
@@ -34,6 +34,10 @@ public class HighlightSplitter {
         }
 
         return str.substring(postTargetIndex());
+    }
+
+    private boolean hasPostTargetString() {
+        return postTargetIndex() > str.length();
     }
 
     private int postTargetIndex() {
