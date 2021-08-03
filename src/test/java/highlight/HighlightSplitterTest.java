@@ -8,7 +8,7 @@ public class HighlightSplitterTest {
     private static final String TARGET = "note";
 
     @Test
-    public void splitHasOnlyOneNote() {
+    public void splitHasOnlyOneTarget() {
         HighlightSplitter splitter = HighlightSplitter.splitter("note", TARGET);
 
         assertThat(splitter.hasNext()).isTrue();
