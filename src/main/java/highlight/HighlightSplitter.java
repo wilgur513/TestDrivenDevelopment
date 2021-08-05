@@ -1,47 +1,93 @@
 package highlight;
 
 public class HighlightSplitter {
-    private String str;
     private final String target;
+    private String str;
     private int index;
+    private String prevTargetString;
+    private boolean isOnlyTargetWord;
 
     private HighlightSplitter(String str, String target) {
         this.str = str;
         this.target = target;
-        this.index = str.indexOf(target);
+        this.prevTargetString = null;
     }
 
     public void next() {
-        str = str.substring(postTargetIndex());
+        if(!hasNext()) {
+            throw new CurrentIsLastTargetException(String.format("str[\"%s\"] does not have target[\"%s\"]", str, target));
+        }
+
+        initDefaultPrevTargetStringAndIsOnlyTargetWord();
+        findTarget();
+    }
+
+    private void initDefaultPrevTargetStringAndIsOnlyTargetWord() {
+        prevTargetString = "";
+        isOnlyTargetWord = false;
+    }
+
+    private void findTarget() {
         index = str.indexOf(target);
+
+        if(index >= 0) {
+            setPrevTargetStringAndIsOnlyTargetWord();
+            str = str.substring(index + target.length());
+        }
+    }
+
+    private void setPrevTargetStringAndIsOnlyTargetWord() {
+        setPrevTargetString();
+        setIsOnlyTargetWord();
+    }
+
+    private void setPrevTargetString() {
+        prevTargetString = str.substring(0, index);
+    }
+
+    private void setIsOnlyTargetWord() {
+        checkPrevCharacter();
+        checkPostCharacter();
+    }
+
+    private void checkPrevCharacter() {
+        isOnlyTargetWord = index == 0 ? true : str.charAt(index - 1) == ' ';
+    }
+
+    private void checkPostCharacter() {
+        if(index + target.length() < str.length()) {
+            isOnlyTargetWord &= str.charAt(index + target.length()) == ' ';
+        } else {
+            isOnlyTargetWord &= true;
+        }
     }
 
     public boolean hasNext() {
-        return index >= 0;
+        return str.contains(target);
+    }
+
+    public boolean isOnlyTargetWord() {
+        if(prevTargetString == null) {
+            throw new NotCallNextException("isOnlyTargetWord is not setting, must call next()");
+        }
+
+        return isOnlyTargetWord;
     }
 
     public String prevTargetString() {
-        return str.substring(0, index);
+        if(prevTargetString == null) {
+            throw new NotCallNextException("prevTargetString is not setting, must call next()");
+        }
+
+        return prevTargetString;
     }
 
     public String postTargetString() {
-        if(findPostTargetString().contains(target)) {
-            throw new CurrentIsNotLastTargetException(String.format("postTargetString[%s] has next target[%s]", findPostTargetString(), target));
+        if(str.contains(target)) {
+            throw new CurrentIsNotLastTargetException(String.format("postTargetString[\"%s\"] has next target[\"%s\"]", str, target));
         }
 
-        return findPostTargetString();
-    }
-
-    private String findPostTargetString() {
-        return notHasPostTargetString() ? "" : str;
-    }
-
-    private boolean notHasPostTargetString() {
-        return postTargetIndex() > str.length();
-    }
-
-    private int postTargetIndex() {
-        return index + target.length();
+        return str;
     }
 
     public static HighlightSplitter splitter(String str, String target) {
