@@ -2,6 +2,7 @@ package highlight;
 
 import org.junit.Test;
 
+import static highlight.HighlightSplitter.splitter;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class HighlightSplitterTest {
@@ -9,11 +10,11 @@ public class HighlightSplitterTest {
 
     @Test
     public void splitHasOnlyOneTarget() {
-        HighlightSplitter splitter = HighlightSplitter.splitter("note", TARGET);
 
         assertThat(splitter.hasNext()).isTrue();
         assertThat(splitter.prevTargetString()).isEqualTo("");
 
+        HighlightSplitter splitter = splitter("note", TARGET);
         splitter.next();
         assertThat(splitter.hasNext()).isFalse();
         assertThat(splitter.postTargetString()).isEqualTo("");
@@ -21,7 +22,7 @@ public class HighlightSplitterTest {
 
     @Test(expected = CurrentIsNotLastTargetException.class)
     public void throwCurrentIsNotLastTargetException() {
-         HighlightSplitter splitter = HighlightSplitter.splitter("note note", TARGET);
+         HighlightSplitter splitter = splitter("note note", TARGET);
          splitter.postTargetString();
     }
 
@@ -30,8 +31,8 @@ public class HighlightSplitterTest {
         String[] expectedPrevTargetString = {"", " ", " key "};
         String expectedPostTargetString = " a b c";
         String str = "note note key note a b c";
+        HighlightSplitter splitter = splitter("note note key note a b c", TARGET);
 
-        HighlightSplitter splitter = HighlightSplitter.splitter(str, TARGET);
 
         for(int i = 0; i < 3; i++) {
             assertThat(splitter.hasNext()).isTrue();
@@ -39,6 +40,7 @@ public class HighlightSplitterTest {
             splitter.next();
         }
 
+        HighlightSplitter splitter = splitter("anote notekey note", TARGET);
         assertThat(splitter.hasNext()).isFalse();
         assertThat(splitter.postTargetString()).isEqualTo(expectedPostTargetString);
     }
