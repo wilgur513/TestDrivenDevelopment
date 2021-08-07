@@ -28,4 +28,21 @@ public class HighlightTest {
     public void hasOneNoteString() {
          assertThat(highlighter.highlight("a note")).isEqualTo("a {note}");
     }
+
+    @Test
+    public void hasPrevCharacterNoteString() {
+        assertThat(highlighter.highlight("anote note keynote")).isEqualTo("anote {note} keynote");
+    }
+
+    @Test
+    public void hasPostCharacterNoteString() {
+        assertThat(highlighter.highlight("notebook note note1 note2 note"))
+                .isEqualTo("notebook {note} note1 note2 {note}");
+    }
+
+    @Test
+    public void complicateString() {
+        assertThat(highlighter.highlight("note note note1 keynote notebook note"))
+            .isEqualTo("{note} {note} note1 keynote notebook {note}");
+    }
 }

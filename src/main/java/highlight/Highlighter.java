@@ -1,37 +1,31 @@
 package highlight;
 
+import static highlight.HighlightSplitter.splitter;
+
 public class Highlighter {
     private static final String NOTE = "note";
     private static final String PRE_HIGHLIGHT = "{";
     private static final String POST_HIGHLIGHT = "}";
 
     public String highlight(String str) {
-        if(notHasNote(str)) {
-            return str;
+        return highlightString(splitter(str, NOTE));
+    }
+
+    private String highlightString(HighlightSplitter splitter) {
+        StringBuilder builder = new StringBuilder();
+
+        while(splitter.hasNext()) {
+            splitter.next();
+            builder.append(splitter.prevTargetString());
+            builder.append(noteWord(splitter));
         }
-        return preNoteString(str) + highlightedNote() + postNoteString(str);
+
+        return builder.append(splitter.postTargetString()).toString();
     }
 
-    private boolean notHasNote(String str) {
-        return noteIndex(str) < 0;
+    private String noteWord(HighlightSplitter splitter) {
+        return splitter.isOnlyTargetWord() ?
+                PRE_HIGHLIGHT + NOTE + POST_HIGHLIGHT : NOTE;
     }
 
-    private String preNoteString(String str) {
-        return str.substring(0, noteIndex(str));
-    }
-
-    private String postNoteString(String str) {
-        if(noteIndex(str) + NOTE.length() > str.length()) {
-            return "";
-        }
-        return str.substring(noteIndex(str) + NOTE.length());
-    }
-
-    private int noteIndex(String str) {
-        return str.indexOf(NOTE);
-    }
-
-    private String highlightedNote() {
-        return PRE_HIGHLIGHT + NOTE + POST_HIGHLIGHT;
-    }
 }
