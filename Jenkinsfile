@@ -6,6 +6,9 @@ node('master') {
       sh 'mvn -Dmaven.test.failuer.ignore clean package' 
     }
   }
+  
+  
+  
   stage('Results') {
     sh "echo 'Test Results Start'"
     junit '**/target/surefire-reports/TEST-*.xml'
